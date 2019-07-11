@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <!-- Register resources and providers under com.vogella.jersey.first package. -->
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>
+                    com.fasterxml.jackson.jaxrs,
+                    com.acme.restfullapi
+            </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>InitializationRestServices</servlet-name>
+        <servlet-class>com.acme.servlets.InitializationRestServices</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InitializationRestServices</servlet-name>
+        <url-pattern>/initapis</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <resource-ref>
+        <res-ref-name>
+            mongodb/movies
+        </res-ref-name>
+        <res-type>
+            com.mongodb.MongoClient
+        </res-type>
+        <res-auth>
+            Container
+        </res-auth>
+    </resource-ref>
+</web-app>
