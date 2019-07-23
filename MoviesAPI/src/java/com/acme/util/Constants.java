@@ -11,7 +11,7 @@ package com.acme.util;
  */
 public class Constants {
 
-    static public final String APP_URI = "http://localhost:8180/movies";
+    static public final String APP_URI = "http://localhost:8080/movies";
     static public final String SWAPI_URI = "https://swapi.co/";
 
     static public final String MONGODB_CONNECTION_STRING = "mongodb://localhost:27017";
